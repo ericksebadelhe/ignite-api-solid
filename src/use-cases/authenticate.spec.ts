@@ -2,7 +2,7 @@ import { expect, describe, it, beforeEach } from 'vitest'
 import { hash } from 'bcryptjs'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { AuthenticateUseCase } from './authenticate'
-import { InvalidCredentiaslsError } from './errors/invalid-credentials-error'
+import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
 let usersRepository: InMemoryUsersRepository
 // system under test = sut
@@ -35,7 +35,7 @@ describe('Authenticate Use Case', () => {
         email: 'johndoe@example.com',
         password: '123456',
       }),
-    ).rejects.toBeInstanceOf(InvalidCredentiaslsError)
+    ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 
   it('should not be able to authenticate with wrong password', async () => {
@@ -50,6 +50,6 @@ describe('Authenticate Use Case', () => {
         email: 'johndoe@example.com',
         password: '123123',
       }),
-    ).rejects.toBeInstanceOf(InvalidCredentiaslsError)
+    ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 })
